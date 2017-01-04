@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="AspectRatioImageView">
+        <attr name="widthRatio" format="integer" />
+        <attr name="heightRatio" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="AspectRatioFrameLayout">
+        <attr name="frameWidthRatio" format="integer" />
+        <attr name="frameHeightRatio" format="integer" />
+    </declare-styleable>
+
+</resources>

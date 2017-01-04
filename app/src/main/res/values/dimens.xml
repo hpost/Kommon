@@ -1,0 +1,32 @@
+<resources>
+
+    <!-- Defaults per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="fill_horizontal_margin">0dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="navigation_drawer_width">304dp</dimen>
+    <dimen name="avatar_size">40dp</dimen>
+    <dimen name="avatar_size_small">32dp</dimen>
+    <dimen name="fab_size">56dp</dimen>
+    <dimen name="fab_size_mini">40dp</dimen>
+    <dimen name="status_bar_height">24dp</dimen>
+    <dimen name="toolbar_height">?attr/actionBarSize</dimen>
+    <dimen name="toolbar_expanded_height">256dp</dimen>
+    <dimen name="tabbar_height">48dp</dimen>
+    <dimen name="search_view_height">48dp</dimen>
+    <dimen name="toolbar_icon_size">24dp</dimen>
+    <dimen name="min_touch_target">48dp</dimen>
+    <dimen name="bottom_sheet_elevation">16dp</dimen>
+    <dimen name="bottom_sheet_width">0dp</dimen>
+    <dimen name="bottom_bar_height">56dp</dimen>
+
+    <dimen name="toolbar_placeholder_height">232dp</dimen>
+    <!-- toolbar_expanded_height - status_bar_height -->
+    <dimen name="corner_radius_card">6dp</dimen>
+    <dimen name="elevation_toolbar">3dp</dimen>
+    <dimen name="elevation_cards">2dp</dimen>
+    <dimen name="fab_margin">24dp</dimen>
+    <dimen name="thumbnail_size">96dp</dimen>
+    <dimen name="thumbnail_size_landscape">192dp</dimen>
+    <dimen name="input_field_width">320dp</dimen>
+</resources>

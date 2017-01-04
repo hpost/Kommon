@@ -1,0 +1,5 @@
+<resources>
+
+    <dimen name="bottom_sheet_width">480dp</dimen>
+
+</resources>

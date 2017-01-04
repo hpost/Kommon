@@ -1,0 +1,7 @@
+<resources>
+
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <dimen name="fill_horizontal_margin">64dp</dimen>
+    <dimen name="bottom_sheet_width">446dp</dimen>
+
+</resources>

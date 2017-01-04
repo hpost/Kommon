@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--lock screen orientation to portrait on small screens-->
+    <bool name="portrait_only">false</bool>
+
+    <!--enables multi column layout managers-->
+    <bool name="is_large_screen">true</bool>
+
+</resources>
