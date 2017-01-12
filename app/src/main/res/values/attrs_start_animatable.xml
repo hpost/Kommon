@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="StartAnimatable">
+        <attr name="android:src" />
+    </declare-styleable>
+</resources>
