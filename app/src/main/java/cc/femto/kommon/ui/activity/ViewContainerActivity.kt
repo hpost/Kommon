@@ -1,11 +1,17 @@
 package cc.femto.kommon.ui.activity
 
+import android.app.Instrumentation
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.view.ViewGroup
+import rx.Observable
+import rx.lang.kotlin.PublishSubject
+import rx.subjects.PublishSubject
 
 abstract class ViewContainerActivity : BaseActivity() {
+
+    private val activityResultSubjects: MutableMap<Int, PublishSubject<Instrumentation.ActivityResult>> = mutableMapOf()
 
     protected var contentView: ViewGroup? = null
         private set
@@ -15,6 +21,13 @@ abstract class ViewContainerActivity : BaseActivity() {
      * @return The resource ID of the view that should be embedded in this Activity
      */
     abstract val viewId: Int
+
+    fun startActivityForResultObservable(intent: Intent, requestCode: Int, options: Bundle? = null): Observable<Instrumentation.ActivityResult> {
+        val subject = PublishSubject<Instrumentation.ActivityResult>()
+        activityResultSubjects.put(requestCode, subject)
+        super.startActivityForResult(intent, requestCode, options)
+        return subject.asObservable()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +69,7 @@ abstract class ViewContainerActivity : BaseActivity() {
     }
 
     override fun onDestroy() {
+        activityResultSubjects.clear()
         super.onDestroy()
         if (contentView is ActivityLifecycleListener) {
             (contentView as ActivityLifecycleListener).onActivityDestroy()
@@ -102,6 +116,7 @@ abstract class ViewContainerActivity : BaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        activityResultSubjects[requestCode]?.onNext(Instrumentation.ActivityResult(resultCode, data))
         if (contentView is OnActivityResultListener) {
             (contentView as OnActivityResultListener).onActivityResult(requestCode, resultCode, data)
         }
