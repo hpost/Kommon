@@ -1,9 +1,9 @@
 buildscript {
     ext.anko_version = '0.8.3'
     ext.dagger_version = '2.0.2'
-    ext.support_version = '25.1.0'
+    ext.support_version = '25.3.0'
     ext.play_services_version = '10.0.1'
-    ext.rxjava_version = '1.2.0'
+    ext.rxjava_version = '1.2.7'
     ext.rxbinding_version = '0.4.0'
     ext.okhttp_version = '3.4.1'
     ext.retrofit_version = '2.1.0'
