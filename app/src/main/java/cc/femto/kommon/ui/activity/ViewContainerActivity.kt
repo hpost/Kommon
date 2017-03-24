@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.view.ViewGroup
 import rx.Observable
+import rx.lang.kotlin.BehaviorSubject
 import rx.lang.kotlin.PublishSubject
 import rx.subjects.PublishSubject
 
 abstract class ViewContainerActivity : BaseActivity() {
 
+    private val intentSubject = BehaviorSubject<Intent>()
     private val activityResultSubjects: MutableMap<Int, PublishSubject<Instrumentation.ActivityResult>> = mutableMapOf()
 
     protected var contentView: ViewGroup? = null
@@ -21,6 +23,11 @@ abstract class ViewContainerActivity : BaseActivity() {
      * @return The resource ID of the view that should be embedded in this Activity
      */
     abstract val viewId: Int
+
+    /**
+     * Emits the latest [Intent] that was captured during [onCreate] or [onNewIntent]
+     */
+    fun intentObservable(): Observable<Intent> = intentSubject.asObservable()
 
     fun startActivityForResultObservable(intent: Intent, requestCode: Int, options: Bundle? = null): Observable<Instrumentation.ActivityResult> {
         val subject = PublishSubject<Instrumentation.ActivityResult>()
@@ -38,6 +45,7 @@ abstract class ViewContainerActivity : BaseActivity() {
         if (contentView is ActivityLifecycleListener) {
             (contentView as ActivityLifecycleListener).onActivityCreate(savedInstanceState)
         }
+        intentSubject.onNext(intent)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
@@ -101,6 +109,7 @@ abstract class ViewContainerActivity : BaseActivity() {
         if (contentView is OnNewIntentListener) {
             (contentView as OnNewIntentListener).onNewIntent(intent)
         }
+        intentSubject.onNext(intent)
         super.onNewIntent(intent)
     }
 
